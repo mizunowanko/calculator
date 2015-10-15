@@ -1,7 +1,6 @@
 /**
  * Created by takashima on 15/10/15.
- */
-
+ **/
 
 
 //Complex Class
