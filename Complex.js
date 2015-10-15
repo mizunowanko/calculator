@@ -77,12 +77,12 @@ Complex.prototype.sub = function (that) {
 
 //multiple
 Complex.prototype.mlt = function (that) {
-    return new Complex(this.re * that.re - this.im * that.im, this.re * that.im + this.im + that.re);
+    return new Complex(this.re * that.re - this.im * that.im, this.re * that.im + this.im * that.re);
 };
 
 //division
 Complex.prototype.div = function (that) {
-    return new this.mlt(that.inv());
+    return this.mlt(that.inv());
 };
 
 //---------------------
@@ -114,25 +114,61 @@ Complex.prototype.exp = function () {
     return Complex.expi(this.im).scl(Math.exp(this.re));
 };
 
-//exponential applied to imaginary number
-Complex.expi = function (x) {
-    return new Complex(Math.cos(x), Math.sin(x));
-};
-
 //logarithm
 Complex.prototype.log = function () {
     return new Complex(Math.log(this.abs()), this.arg());
 };
 
+//exponential applied to imaginary number
+Complex.expi = function (x) {
+    return new Complex(Math.cos(x), Math.sin(x));
+};
+
+//------------------------
+//      trigonometric
+//------------------------
+
+//sin
+Complex.prototype.sin = function () {
+    var a = Complex.cosi(this.im).scl(Math.sin(this.re));
+    var b = Complex.sini(this.im).scl(Math.cos(this.re));
+    return a.add(b);
+}
+
+//cos
+Complex.prototype.cos = function () {
+    var a = Complex.cosi(this.im).scl(Math.cos(this.re));
+    var b = Complex.sini(this.im).scl(Math.sin(this.re));
+    return a.add(b);
+}
+
+
+// sin applied to imaginary number
+Complex.sini = function (x) {
+    var a = Complex.expi(x);
+    var b = Complex.expi(-x);
+    var c = new Complex(2, 0);
+    return a.add(b).div(c);
+};
+
+// cos applied to imaginary number
+Complex.cosi = function (x) {
+    var a = Complex.expi(x);
+    var b = Complex.expi(-x);
+    var c = new Complex(0, 2);
+    return a.sub(b).div(c);
+};
 
 
 //------------------------
-//
+//     test
 //------------------------
 
 
 window.onload = function () {
-    var a = new Complex(-1, 0), b = new Complex(0, Math.PI);
-    var c = b.exp();
+    var a = new Complex(1, 1);
+    var b = new Complex(Math.PI, 0);
+    var c = b.cos();
+    var d = Complex.sini(Math.PI);
     window.alert(c);
 };
