@@ -3,58 +3,58 @@
  **/
 
 
-//
-//複素数を表す関数
-//
+//+++++++++++++++++++++
+// 複素数を表すオブジェクト
+//+++++++++++++++++++++
+var Complex = G.arithmetic.Complex;
 
-
-//Complex Class
-var Complex;
+//複素数オブジェクトの定義
 Complex = function (re, im) {
 
 
-    //real number
+    //実数
     this.re = re;
 
-    //imaginary number
+    //虚数
     this.im = im;
 };
 
 //--------------------
-//     Object
+//     オブジェクト関数
 //--------------------
 
+//toString
 Complex.prototype.toString = function () {
     return String(this.re.toFixed(2)) + " + " + String(this.im.toFixed(2)) + "i";
 };
 
 
 //--------------------
-//    basic operations
+//  複素数特有の基本演算
 //--------------------
 
 
-//scala multiple
+//実数倍
 Complex.prototype.scl = function (k) {
     return new Complex(this.re * k, this.im * k);
 };
 
-//abstract
+//絶対値
 Complex.prototype.abs = function () {
     return Math.sqrt(this.abs2());
 };
 
-//square of abstract
+//絶対値の二乗
 Complex.prototype.abs2 = function () {
     return Math.pow(this.re, 2) + Math.pow(this.im, 2);
 };
 
-//conjgate
+//共役
 Complex.prototype.conj = function () {
     return new Complex(this.re, -this.im);
 };
 
-//inverse
+//逆数
 Complex.prototype.inv = function () {
     var a = new Complex(this.re, -this.im);
     return a.scl(1 / this.abs2());
@@ -62,70 +62,71 @@ Complex.prototype.inv = function () {
 
 
 //--------------------------------
-//    Four arithmetic operations
+//    四則演算
 //--------------------------------
 
-//add
+//加法
 Complex.prototype.add = function (that) {
     return new Complex(this.re + that.re, this.im + that.im);
 };
 
-//subtract
+//減法
 Complex.prototype.sub = function (that) {
     return new Complex(this.re - that.re, this.im - that.im);
 };
 
-//multiple
+//乗法
 Complex.prototype.mlt = function (that) {
     return new Complex(this.re * that.re - this.im * that.im, this.re * that.im + this.im * that.re);
 };
 
-//division
+//除法
 Complex.prototype.div = function (that) {
     return this.mlt(that.inv());
 };
 
 //---------------------
-//    polar form
+//    極形式
 //---------------------
 
-//declination
+//偏角
 Complex.prototype.arg = function () {
-    return this.re > 0 ? Math.atan(this.im / this.re) : Math.atan(this.im / this.re) + Math.PI;
+    var x = this.re;
+    var y = this.im;
 };
 
-//cos
+//余弦
 Complex.prototype.cos = function () {
     return this.re / this.abs();
 };
 
-//sin
+//正弦
 Complex.prototype.sin = function () {
     return this.im / this.abs();
 };
 
 
 //--------------------------------
-//    exponential & logarithm
+//    指数関数、対数関数
 //--------------------------------
 
-//exponential
+//指数関数
 Complex.prototype.exp = function () {
     return Complex.expi(this.im).scl(Math.exp(this.re));
 };
 
-//logarithm
+//対数関数
 Complex.prototype.log = function () {
     return new Complex(Math.log(this.abs()), this.arg());
 };
 
-//exponential applied to imaginary number
+//純虚数に対する指数関数
 Complex.expi = function (x) {
     return new Complex(Math.cos(x), Math.sin(x));
 };
 
 //------------------------
-//      trigonometric
+//      三角関数
 //------------------------
 
 //sin
@@ -142,8 +143,12 @@ Complex.prototype.cos = function () {
     return a.add(b);
 }
 
+//tan
+Complex.prototype.tan = function (){
+    return this.sin().div(this.cos());
+};
 
-// sin applied to imaginary number
+// 純虚数に対するsin
 Complex.sini = function (x) {
     var a = Complex.expi(x);
     var b = Complex.expi(-x);
@@ -151,7 +156,7 @@ Complex.sini = function (x) {
     return a.add(b).div(c);
 };
 
-// cos applied to imaginary number
+// 純虚数に対するcos
 Complex.cosi = function (x) {
     var a = Complex.expi(x);
     var b = Complex.expi(-x);
@@ -160,15 +165,26 @@ Complex.cosi = function (x) {
 };
 
 
+
 //------------------------
-//     test
+//      双曲線関数
 //------------------------
 
 
-window.onload = function () {
-    var a = new Complex(1, 1);
-    var b = new Complex(Math.PI, 0);
-    var c = b.cos();
-    var d = Complex.sini(Math.PI);
-    window.alert(c);
+
+
+//------------------------
+//      べき乗
+//------------------------
+
+//べき乗
+Complex.prototype.pow = function(that){
+    var r = this.abs();
+    var x = this.arg();
+    var u = that.re;
+    var v = that.im;
+
+    var a = Math.pow(r,u);
+    var w = new Complex(-v, u * x + v * Math.log(r));
+    return w.exp().scl(a);
 };
