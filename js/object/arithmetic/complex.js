@@ -6,10 +6,9 @@
 //+++++++++++++++++++++
 // 複素数を表すオブジェクト
 //+++++++++++++++++++++
-var Complex = G.arithmetic.Complex;
 
 //複素数オブジェクトの定義
-Complex = function (re, im) {
+G.arithmetic.Complex = function (re, im) {
 
 
     //実数
@@ -24,7 +23,7 @@ Complex = function (re, im) {
 //--------------------
 
 //toString
-Complex.prototype.toString = function () {
+G.arithmetic.Complex.prototype.toString = function () {
     return String(this.re.toFixed(2)) + " + " + String(this.im.toFixed(2)) + "i";
 };
 
@@ -35,28 +34,28 @@ Complex.prototype.toString = function () {
 
 
 //実数倍
-Complex.prototype.scl = function (k) {
-    return new Complex(this.re * k, this.im * k);
+G.arithmetic.Complex.prototype.scl = function (k) {
+    return new G.arithmetic.Complex(this.re * k, this.im * k);
 };
 
 //絶対値
-Complex.prototype.abs = function () {
+G.arithmetic.Complex.prototype.abs = function () {
     return Math.sqrt(this.abs2());
 };
 
 //絶対値の二乗
-Complex.prototype.abs2 = function () {
+G.arithmetic.Complex.prototype.abs2 = function () {
     return Math.pow(this.re, 2) + Math.pow(this.im, 2);
 };
 
 //共役
-Complex.prototype.conj = function () {
-    return new Complex(this.re, -this.im);
+G.arithmetic.Complex.prototype.conj = function () {
+    return new G.arithmetic.Complex(this.re, -this.im);
 };
 
 //逆数
-Complex.prototype.inv = function () {
-    var a = new Complex(this.re, -this.im);
+G.arithmetic.Complex.prototype.inv = function () {
+    var a = new G.arithmetic.Complex(this.re, -this.im);
     return a.scl(1 / this.abs2());
 };
 
@@ -66,22 +65,22 @@ Complex.prototype.inv = function () {
 //--------------------------------
 
 //加法
-Complex.prototype.add = function (that) {
-    return new Complex(this.re + that.re, this.im + that.im);
+G.arithmetic.Complex.prototype.add = function (that) {
+    return new G.arithmetic.Complex(this.re + that.re, this.im + that.im);
 };
 
 //減法
-Complex.prototype.sub = function (that) {
-    return new Complex(this.re - that.re, this.im - that.im);
+G.arithmetic.Complex.prototype.sub = function (that) {
+    return new G.arithmetic.Complex(this.re - that.re, this.im - that.im);
 };
 
 //乗法
-Complex.prototype.mlt = function (that) {
-    return new Complex(this.re * that.re - this.im * that.im, this.re * that.im + this.im * that.re);
+G.arithmetic.Complex.prototype.mlt = function (that) {
+    return new G.arithmetic.Complex(this.re * that.re - this.im * that.im, this.re * that.im + this.im * that.re);
 };
 
 //除法
-Complex.prototype.div = function (that) {
+G.arithmetic.Complex.prototype.div = function (that) {
     return this.mlt(that.inv());
 };
 
@@ -90,18 +89,33 @@ Complex.prototype.div = function (that) {
 //---------------------
 
 //偏角
-Complex.prototype.arg = function () {
+G.arithmetic.Complex.prototype.arg = function () {
     var x = this.re;
     var y = this.im;
+    if (x === 0) {
+        if (y > 0) {
+            return Math.PI / 2;
+        } else if (y < 0) {
+            return -Math.PI / 2;
+        } else {
+            return undefined;
+        }
+    } else {
+        if (x > 0) {
+            return Math.atan(y / x);
+        } else {
+            return Math.atan(y / x) + Math.PI;
+        }
+    }
 };
 
 //余弦
-Complex.prototype.cos = function () {
+G.arithmetic.Complex.prototype.cos = function () {
     return this.re / this.abs();
 };
 
 //正弦
-Complex.prototype.sin = function () {
+G.arithmetic.Complex.prototype.sin = function () {
     return this.im / this.abs();
 };
 
@@ -111,18 +125,18 @@ Complex.prototype.sin = function () {
 //--------------------------------
 
 //指数関数
-Complex.prototype.exp = function () {
-    return Complex.expi(this.im).scl(Math.exp(this.re));
+G.arithmetic.Complex.prototype.exp = function () {
+    return G.arithmetic.Complex.expi(this.im).scl(Math.exp(this.re));
 };
 
 //対数関数
-Complex.prototype.log = function () {
-    return new Complex(Math.log(this.abs()), this.arg());
+G.arithmetic.Complex.prototype.log = function () {
+    return new G.arithmetic.Complex(Math.log(this.abs()), this.arg());
 };
 
 //純虚数に対する指数関数
-Complex.expi = function (x) {
-    return new Complex(Math.cos(x), Math.sin(x));
+G.arithmetic.Complex.expi = function (x) {
+    return new G.arithmetic.Complex(Math.cos(x), Math.sin(x));
 };
 
 //------------------------
@@ -130,40 +144,39 @@ Complex.expi = function (x) {
 //------------------------
 
 //sin
-Complex.prototype.sin = function () {
-    var a = Complex.cosi(this.im).scl(Math.sin(this.re));
-    var b = Complex.sini(this.im).scl(Math.cos(this.re));
+G.arithmetic.Complex.prototype.sin = function () {
+    var a = G.arithmetic.Complex.cosi(this.im).scl(Math.sin(this.re));
+    var b = G.arithmetic.Complex.sini(this.im).scl(Math.cos(this.re));
     return a.add(b);
 }
 
 //cos
-Complex.prototype.cos = function () {
-    var a = Complex.cosi(this.im).scl(Math.cos(this.re));
-    var b = Complex.sini(this.im).scl(Math.sin(this.re));
+G.arithmetic.Complex.prototype.cos = function () {
+    var a = G.arithmetic.Complex.cosi(this.im).scl(Math.cos(this.re));
+    var b = G.arithmetic.Complex.sini(this.im).scl(Math.sin(this.re));
     return a.add(b);
 }
 
 //tan
-Complex.prototype.tan = function (){
+G.arithmetic.Complex.prototype.tan = function () {
     return this.sin().div(this.cos());
 };
 
 // 純虚数に対するsin
-Complex.sini = function (x) {
-    var a = Complex.expi(x);
-    var b = Complex.expi(-x);
-    var c = new Complex(2, 0);
+G.arithmetic.Complex.sini = function (x) {
+    var a = G.arithmetic.Complex.expi(x);
+    var b = G.arithmetic.Complex.expi(-x);
+    var c = new G.arithmetic.Complex(2, 0);
     return a.add(b).div(c);
 };
 
 // 純虚数に対するcos
-Complex.cosi = function (x) {
-    var a = Complex.expi(x);
-    var b = Complex.expi(-x);
-    var c = new Complex(0, 2);
+G.arithmetic.Complex.cosi = function (x) {
+    var a = G.arithmetic.Complex.expi(x);
+    var b = G.arithmetic.Complex.expi(-x);
+    var c = new G.arithmetic.Complex(0, 2);
     return a.sub(b).div(c);
 };
-
 
 
 //------------------------
@@ -171,20 +184,26 @@ Complex.cosi = function (x) {
 //------------------------
 
 
-
-
 //------------------------
 //      べき乗
 //------------------------
 
 //べき乗
-Complex.prototype.pow = function(that){
-    var r = this.abs();
-    var x = this.arg();
-    var u = that.re;
-    var v = that.im;
+G.arithmetic.Complex.prototype.pow = function (that) {
+    if (this.re === 0 && this.im === 0) {
+        if(that.re === 0 && that.im === 0){
+            return undefined;
+        }else{
+            return new G.arithmetic.Complex(0, 0);
+        }
+    } else {
+        var r = this.abs();
+        var x = this.arg();
+        var u = that.re;
+        var v = that.im;
 
-    var a = Math.pow(r,u);
-    var w = new Complex(-v, u * x + v * Math.log(r));
-    return w.exp().scl(a);
+        var a = Math.pow(r, u);
+        var w = new G.arithmetic.Complex(-v, u * x + v * Math.log(r));
+        return w.exp().scl(a);
+    }
 };
