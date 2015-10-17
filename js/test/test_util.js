@@ -3,7 +3,10 @@
  */
 
 
-G.test.TestUtil = function () {
+G.test.TestUtil.testGetPropertyArr = function () {
+    var a = G.script.Operator.Operators;
+    var b = G.script.Util.getPropertyArr(a, "name");
+    console.log(b);
 };
 
 G.test.TestUtil.testLastIndexOf = function () {
@@ -13,4 +16,4 @@ G.test.TestUtil.testLastIndexOf = function () {
 };
 
 
-window.onload = G.test.TestUtil.testLastIndexOf;
+window.onload = G.test.TestUtil.testGetPropertyArr;
