@@ -17,3 +17,4 @@ G.test.TestUtil.testLastIndexOf = function () {
 
 
 window.onload = G.test.TestUtil.testGetPropertyArr;
+

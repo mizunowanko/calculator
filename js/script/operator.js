@@ -14,7 +14,7 @@ G.script.Operator= function(name, priority, applying){
 G.script.Operator.Operators = [
     new G.script.Operator("+", 2),
     new G.script.Operator("-", 2),
-    new G.script.Operator("exp", 4),
+    new G.script.Operator("log", 4),
     new G.script.Operator("*", 6),
     new G.script.Operator("/", 6),
     new G.script.Operator("^", 8)
@@ -26,8 +26,5 @@ G.script.Operator.filterByPriority = function (pri){
     var a = G.script.Operator.Operators.filter(function(x){return x.priority === pri});
     return a;
 };
-
-
-
 
 
