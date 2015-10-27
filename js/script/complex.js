@@ -3,16 +3,17 @@
  **/
 
 
-G.script = function(){
+(function(){
 
-    var Cmp = G.script.Complex;
 
-    //+++++++++++++++++++++
-    // 複素数を表すオブジェクト
-    //+++++++++++++++++++++
 
-    //複素数オブジェクトの定義
-    Cmp = function(re, im){
+
+//+++++++++++++++++++++
+// 複素数を表すオブジェクト
+//+++++++++++++++++++++
+
+//複素数オブジェクトの定義
+    G.script.Complex = function(re, im){
 
         //実数
         this.re = re;
@@ -20,6 +21,9 @@ G.script = function(){
         //虚数
         this.im = im;
     };
+
+    //複素数オブジェクトを格納するローカル変数
+    var Cmp = G.script.Complex;
 
 //--------------------
 //     オブジェクト関数
@@ -44,7 +48,7 @@ G.script = function(){
 
 //絶対値
     Cmp.abs = function(a){
-        return Math.sqrt(a.abs2());
+        return Math.sqrt(Cmp.abs2(a));
     };
 
 //絶対値の二乗
@@ -121,7 +125,7 @@ G.script = function(){
 
 //指数関数
     Cmp.exp = function(a){
-        return Cmp.expi(a.im).scl(Math.exp(a.re));
+        return Cmp.scl(Math.exp(a.re), Cmp.expi(a.im));
     };
 
 //対数関数
@@ -193,16 +197,16 @@ G.script = function(){
                 return new Cmp(0, 0);
             }
         } else {
-            var r = a.abs();
-            var x = a.arg();
+            var r = Cmp.abs(a);
+            var x = Cmp.arg(a);
             var u = b.re;
             var v = b.im;
 
             var c = Math.pow(r, u);
-            var w = new Cmp(-v, u * x + v * Math.log(r));
+            var w = new Cmp(-v * x, u * x + v * Math.log(r));
             return Cmp.scl(c, Cmp.exp(w));
         }
     };
 
 
-};
+}());

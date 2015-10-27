@@ -12,10 +12,9 @@ G.test.TestComplex.testExp = function(){
 };
 
 G.test.TestComplex.testPow = function(){
-    var a = new G.script.Complex(1, 0);
-    var b = new G.script.Complex(0, 0);
-    window.console.log(a.pow(b));
-    alert(a.pow(b));
+    var a = new G.script.Complex(Math.E, 0);
+    var b = new G.script.Complex(0, Math.PI);
+    alert(G.script.Complex.pow(a, b));
 };
 
 
