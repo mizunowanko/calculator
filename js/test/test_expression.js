@@ -9,7 +9,6 @@
 
     var testExpression = function(){
         var t = new G.script.Expression("aaa");
-        console.log(t.strToExpressions());
     };
 
 
