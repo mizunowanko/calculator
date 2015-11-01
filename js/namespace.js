@@ -9,8 +9,8 @@ var G = {
         Util: {},
         Tree: {},
         Operator: {},
-        Expression: function(){
-        }
+        Atom : {},
+        Expression : {}
     },
     test: {
         TestUtil: {},

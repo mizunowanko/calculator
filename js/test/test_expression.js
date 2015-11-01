@@ -8,7 +8,7 @@
 (function(){
 
     var testExpression = function(){
-        var t = new G.script.Expression("aaa");
+        var t = new G.script.Expression("e");
     };
 
 
