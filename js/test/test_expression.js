@@ -7,8 +7,32 @@
 
 (function(){
 
+    var Expr = G.script.Expression;
+
     var testExpression = function(){
-        var t = new G.script.Expression("e");
+
+        var atoms = G.script.Atom.Atoms;
+
+        var a = "+";
+        var r = atoms.add.headRegStr;
+        var b = a.match(r);
+
+        //var str = "+aa";
+        //_.forEach(atoms, (function(x){
+        //    console.log(x.headRegStr.test(str));
+        //}));
+        //var f =_.find(atoms, function(x){
+        //    return x.headRegStr.test(str);
+        //});
+
+        var c = a.replace("+", "");
+
+
+        var t1 = Expr.createExpressionByStr("(+)");
+        var t2 = Expr.createExpressionByStr("-3i");
+        var t3 = Expr.createExpressionByStr("2*(e-2)");
+        var dis = t2.disCompose();
+        var a;
     };
 
 

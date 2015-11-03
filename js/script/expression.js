@@ -5,32 +5,80 @@
 (function(){
 
 
-    G.script.Expression = function(str){
-        str = Expr.trimParen(str);
-
+    G.script.Expression = function(children){
+        this.children = children;
     };
 
     var Expr = G.script.Expression;
+    var Atom = G.script.Atom;
     var Complex = G.script.Complex;
+    var Util = G.script.Util;
 
-    //文字列を式の配列に変換する
-    Expr.strTochlidren = function(str){
-
-    };
-
-//式の種類の獲得
-    Expr.prototype.getKind = function(){
-
-    };
-
-//文字列の両端がカッコだったら、それを取り除く
-    Expr.trimParen = function(str){
-        if (str.slice(0) === "(" && str.slice(-1) === ")") {
-            str = _.trimLeft(_.trimRight(str, ")"), "(");
+    Expr.createExpressionByStr = function(str){
+        str = Util.trimParen(str);
+        var children = [];
+        var head = "";
+        while (str.length > 0) {
+            str = Util.trimParen(str);
+            var f = _.find(Atom.Atoms, function(x){
+                return x.headRegStr.test(str);
+            });
+            if (f) {
+                head = str.match(f.headRegStr)[0];
+                children.push(Atom.createAtom(head));
+                str = _.trimLeft(str, head);
+            } else if (str.match(/^\(/)) {
+                head = Expr.getBetweenParen(str);
+                children.push(Expr.createExpressionByStr(head));
+                str = _.trimLeft(str, head);
+                var b;
+            } else {
+                throw new Error("invalid expression");
+            }
         }
-
-        return str;
+        return Expr.createExpressionByChildren(children);
     };
 
+
+    Expr.createExpressionByChildren = function(children){
+        return new Expr(children);
+    };
+
+    Expr.getBetweenParen = function(str){
+        var s = "";
+        var i = 0;
+        var depth = 0;
+        do {
+            switch (str.charAt(i)) {
+                case "(":
+                    depth++;
+                    break;
+                case ")":
+                    depth--;
+                    break;
+                default:
+                    break;
+            }
+            if (str.length <= i) {
+                throw new Error("wrong paren");
+            }
+            s += str.charAt(i);
+            i++;
+        } while (depth > 0);
+        return s;
+    };
+
+    Expr.prototype.disCompose = function(){
+        var min = _.min(this.children, "priority");
+        var index = _.lastIndexOf(this.children, min);
+        var mid = [this.children[index]];
+        var bfr = this.children.slice(0, index);
+        var aft = this.children.slice(index + 1);
+        return {
+            mid : Expr.createExpressionByChildren(mid),
+            bfr : Expr.createExpressionByChildren(bfr),
+            aft : Expr.createExpressionByChildren(aft)
+        };
+    };
 
 }());

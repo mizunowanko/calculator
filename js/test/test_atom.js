@@ -5,10 +5,6 @@
 
 (function(){
     var Atom = G.script.Atom;
-    var a = new Atom("aoeu");
-    var as = {aa : "aaa", bb : "bbb"};
-    var y = _.find(as, function(x){
-        return x === "aaa";
-    });
-    console.log(y);
+    var a = Atom.createAtom("+");
+    var b = Atom.createAtom("2");
 }());
