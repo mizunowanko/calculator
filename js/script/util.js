@@ -34,17 +34,6 @@
         return ans;
     };
 
-//文字列の両端がカッコだったら、それを取り除く
-    Util.trimParen = function(str){
-        if (str.match(/^\(.+\)$/)) {
-            str = str.replace(/^\(/, "");
-            str = str.replace(/\)$/, "");
-        }
-        return str;
-    };
-
-
-
 
 }());
 

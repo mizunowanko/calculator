@@ -14,15 +14,15 @@
         var atoms = G.script.Atom.Atoms;
 
         var a = "+";
-        var r = atoms.add.headRegStr;
+        var r = atoms.add.headReg;
         var b = a.match(r);
 
         //var str = "+aa";
         //_.forEach(atoms, (function(x){
-        //    console.log(x.headRegStr.test(str));
+        //    console.log(x.headReg.test(str));
         //}));
         //var f =_.find(atoms, function(x){
-        //    return x.headRegStr.test(str);
+        //    return x.headReg.test(str);
         //});
 
         var c = a.replace("+", "");

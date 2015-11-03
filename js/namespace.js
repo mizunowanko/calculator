@@ -10,7 +10,6 @@ var G = {
         Tree: {},
         Operator: {},
         Atom : {},
-        AtomKind : {},
         Expression : {}
     },
     test: {

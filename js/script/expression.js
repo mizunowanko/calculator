@@ -7,6 +7,7 @@
 
     G.script.Expression = function(children){
         this.children = children;
+        this.priority = Atom.Atoms.expression.priority;
     };
 
     var Expr = G.script.Expression;
@@ -15,23 +16,26 @@
     var Util = G.script.Util;
 
     Expr.createExpressionByStr = function(str){
-        str = Util.trimParen(str);
         var children = [];
         var head = "";
         while (str.length > 0) {
-            str = Util.trimParen(str);
+            //str = Expr.trimParen(str);
             var f = _.find(Atom.Atoms, function(x){
-                return x.headRegStr.test(str);
+                return x.headReg().test(str);
             });
             if (f) {
-                head = str.match(f.headRegStr)[0];
+                head = str.match(f.headReg())[0];
                 children.push(Atom.createAtom(head));
                 str = _.trimLeft(str, head);
+            } else if (str.match(/^\(.+\)$/)) {
+                var inner = Expr.trimParen(str);
+                children.push(Atom.createAtom("id"));
+                children.push(Expr.createExpressionByStr(inner));
+                str = "";
             } else if (str.match(/^\(/)) {
                 head = Expr.getBetweenParen(str);
-                children.push(Expr.createExpressionByStr(head));
+                children.push(head);
                 str = _.trimLeft(str, head);
-                var b;
             } else {
                 throw new Error("invalid expression");
             }
@@ -41,6 +45,9 @@
 
 
     Expr.createExpressionByChildren = function(children){
+        if (children.length === 1 && children[0] instanceof Expr) {
+            children = children[0].children;
+        }
         return new Expr(children);
     };
 
@@ -79,6 +86,21 @@
             bfr : Expr.createExpressionByChildren(bfr),
             aft : Expr.createExpressionByChildren(aft)
         };
+    };
+
+    //文字列の両端がカッコだったら、それを取り除く
+    Expr.trimParen = function(str){
+        if (str.match(/^\(.+\)$/)) {
+            str = str.replace(/^\(/, "");
+            str = str.replace(/\)$/, "");
+        }
+        var nums = _.filter(Atom.Atoms, function(x){
+            return x.kind === Atom.Kinds.num;
+        });
+        //nums.forEach(function(x){
+        //    var reg =
+        //});
+        return str;
     };
 
 }());

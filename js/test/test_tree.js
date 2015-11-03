@@ -22,10 +22,17 @@
     var Tree = G.script.Tree;
 
     var testExpand = function(){
-        var expr1 = Expr.createExpressionByStr("3-5i*(log(3))");
+
+
+
+        //_.each(Atom.Atoms,(function(x){
+        //    console.log(x.headReg());
+        //}));
+        var expr1 = Expr.createExpressionByStr("e^(pi*i/2)");
         var tree = new Tree(expr1);
         tree.expand();
         var value = Tree.getValue(tree);
+        alert(value);
     };
 
     window.onload = testExpand();
