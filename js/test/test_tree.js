@@ -28,11 +28,11 @@
         //_.each(Atom.Atoms,(function(x){
         //    console.log(x.headReg());
         //}));
-        var expr1 = Expr.createExpressionByStr("e^(pi*i/2)");
-        var tree = new Tree(expr1);
-        tree.expand();
+        var expr1 = Expr.createExpressionByStr("(2)+(log(2*e))");
+        var tree = Tree.createTree(expr1);
         var value = Tree.getValue(tree);
-        alert(value);
+        document.write(tree.toString());
+        //alert(value);
     };
 
     window.onload = testExpand();

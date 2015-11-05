@@ -12,8 +12,18 @@
 
     var Expr = G.script.Expression;
     var Atom = G.script.Atom;
-    var Complex = G.script.Complex;
-    var Util = G.script.Util;
+
+    //Expr.prototype.toString = function(){
+    //    var str = "";
+    //    _.each(this.children,function(x){
+    //        if(x instanceof  Atom){
+    //            str += x.str;
+    //        }else{
+    //            str += x.toString();
+    //        }
+    //    });
+    //    return str;
+    //};
 
     Expr.createExpressionByStr = function(str){
         var children = [];

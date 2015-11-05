@@ -29,6 +29,7 @@
 
 
         var t1 = Expr.createExpressionByStr("(+)");
+        console.log(t1.toString());
         var t2 = Expr.createExpressionByStr("-3i");
         var t3 = Expr.createExpressionByStr("2*(e-2)");
         var dis = t2.disCompose();

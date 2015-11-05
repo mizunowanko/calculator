@@ -14,7 +14,23 @@
     var Expr = G.script.Expression;
 
     Tree.prototype.toString = function(){
-        return "root : " + this.root + ", left : " + this.left + ", right : " + this.right;
+        var str = "";
+        str += _.repeat("----", this.depth);
+        str += this.expression.children[0].str + "<br>";
+        if (this.left !== null) {
+            str += this.left.toString() + "<br>";
+        }
+        if (this.right !== null) {
+            str += this.right.toString() + "<br>";
+        }
+        return str;
+    };
+
+    Tree.createTree = function(expression){
+        var tree = new Tree(expression);
+        tree.expand();
+        tree.setDepth(0);
+        return tree;
     };
 
 
@@ -70,6 +86,16 @@
         }
     };
 
+    Tree.prototype.setDepth = function(depth){
+        this.depth = depth;
+        if (this.right !== null) {
+            this.right.setDepth(depth + 1);
+        }
+        if (this.left !== null) {
+            this.left.setDepth(depth + 1);
+        }
+    };
+
     Tree.getValue = function(tree){
         if (tree === null) {
             return undefined;
@@ -77,6 +103,7 @@
         var val = tree.expression.children[0].behave(Tree.getValue(tree.left), Tree.getValue(tree.right));
         return val;
     };
+
 
     Tree.hasBfr = function(rootAndBranch, bool){
         if (bool) {
