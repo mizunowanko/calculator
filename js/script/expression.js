@@ -37,14 +37,14 @@
                 head = str.match(f.headReg())[0];
                 children.push(Atom.createAtom(head));
                 str = _.trimLeft(str, head);
-            } else if (str.match(/^\(.+\)$/)) {
+            } else if (Expr.getBetweenParen(str) === str) {
                 var inner = Expr.trimParen(str);
                 children.push(Atom.createAtom("id"));
                 children.push(Expr.createExpressionByStr(inner));
                 str = "";
             } else if (str.match(/^\(/)) {
                 head = Expr.getBetweenParen(str);
-                children.push(head);
+                children.push(Expr.createExpressionByStr(head));
                 str = _.trimLeft(str, head);
             } else {
                 throw new Error("invalid expression");

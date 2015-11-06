@@ -18,10 +18,10 @@
         str += _.repeat("----", this.depth);
         str += this.expression.children[0].str + "<br>";
         if (this.left !== null) {
-            str += this.left.toString() + "<br>";
+            str += this.left.toString();
         }
         if (this.right !== null) {
-            str += this.right.toString() + "<br>";
+            str += this.right.toString();
         }
         return str;
     };
@@ -56,9 +56,9 @@
                     this.right = new Tree(aft);
                 } else {
                     Tree.hasAft(rootAndBranch, true);
-                    this.expression = root;
+                    this.expression = mid;
                     this.left = new Tree(Expr.createExpressionByStr("0"));
-                    this.right = new Tree(right);
+                    this.right = new Tree(aft);
                 }
                 break;
             case kinds.func:

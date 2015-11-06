@@ -28,11 +28,11 @@
         //_.each(Atom.Atoms,(function(x){
         //    console.log(x.headReg());
         //}));
-        var expr1 = Expr.createExpressionByStr("(2)+(log(2*e))");
+        var expr1 = Expr.createExpressionByStr("(1+i)^(1+i)");
         var tree = Tree.createTree(expr1);
         var value = Tree.getValue(tree);
         document.write(tree.toString());
-        //alert(value);
+        document.write(value);
     };
 
     window.onload = testExpand();
