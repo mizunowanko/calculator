@@ -28,7 +28,7 @@
         //_.each(Atom.Atoms,(function(x){
         //    console.log(x.headReg());
         //}));
-        var expr1 = Expr.createExpressionByStr("(1+i)^(1+i)");
+        var expr1 = Expr.createExpressionByStr("-(1+i)^(1+i)");
         var tree = Tree.createTree(expr1);
         var value = Tree.getValue(tree);
         document.write(tree.toString());

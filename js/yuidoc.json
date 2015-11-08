@@ -1,0 +1,13 @@
+{
+  "name": "Calculator",
+  "description": "document sample",
+  "version": "0.0.1",
+  "url": "http://localhost:63342/calculator/",
+  "options": {
+    "linkNatives": "true",
+    "attributesEmit": "true",
+    "selleck": "true",
+    "paths": "script",
+    "outdir": "./doc"
+  }
+}

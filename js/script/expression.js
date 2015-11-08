@@ -7,23 +7,10 @@
 
     G.script.Expression = function(children){
         this.children = children;
-        this.priority = Atom.Atoms.expression.priority;
     };
 
     var Expr = G.script.Expression;
     var Atom = G.script.Atom;
-
-    //Expr.prototype.toString = function(){
-    //    var str = "";
-    //    _.each(this.children,function(x){
-    //        if(x instanceof  Atom){
-    //            str += x.str;
-    //        }else{
-    //            str += x.toString();
-    //        }
-    //    });
-    //    return str;
-    //};
 
     Expr.createExpressionByStr = function(str){
         var children = [];
@@ -33,18 +20,20 @@
             var f = _.find(Atom.Atoms, function(x){
                 return x.headReg().test(str);
             });
-            if (f) {
+            if (str.match(/^\(/)) {
+                if (Expr.getBetweenParen(str) === str) {
+                    var inner = Expr.trimParen(str);
+                    children.push(Atom.createAtom("id"));
+                    children.push(Expr.createExpressionByStr(inner));
+                    str = "";
+                } else if (str.match(/^\(/)) {
+                    head = Expr.getBetweenParen(str);
+                    children.push(Expr.createExpressionByStr(head));
+                    str = _.trimLeft(str, head);
+                }
+            } else if (f) {
                 head = str.match(f.headReg())[0];
                 children.push(Atom.createAtom(head));
-                str = _.trimLeft(str, head);
-            } else if (Expr.getBetweenParen(str) === str) {
-                var inner = Expr.trimParen(str);
-                children.push(Atom.createAtom("id"));
-                children.push(Expr.createExpressionByStr(inner));
-                str = "";
-            } else if (str.match(/^\(/)) {
-                head = Expr.getBetweenParen(str);
-                children.push(Expr.createExpressionByStr(head));
                 str = _.trimLeft(str, head);
             } else {
                 throw new Error("invalid expression");
