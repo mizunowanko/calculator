@@ -4,6 +4,12 @@
 
 (function(){
 
+    /**
+     * 式の木構造を表すクラス
+     * @class Tree
+     * @param expression   Expressionオブジェクト
+     * @constructor
+     */
     G.script.Tree = function(expression){
         this.expression = expression;
     };
@@ -13,6 +19,11 @@
     var Atom = G.script.Atom;
     var Expr = G.script.Expression;
 
+    /**
+     * 木構造を文字列で表現
+     * @method toString
+     * @returns {string}
+     */
     Tree.prototype.toString = function(){
         var str = "";
         str += _.repeat("----", this.depth);
@@ -26,6 +37,13 @@
         return str;
     };
 
+    /**
+     * ExpressionオブジェクトからTreeオブジェクトを生成する
+     * @static
+     * @method createTree
+     * @param expression    Expressionオブジェクト
+     * @returns {G.script.Tree|{}}
+     */
     Tree.createTree = function(expression){
         var tree = new Tree(expression);
         tree.expand();
@@ -33,7 +51,10 @@
         return tree;
     };
 
-
+    /**
+     * 木構造を展開する
+     * @method expand
+     */
     Tree.prototype.expand = function(){
         var kinds = Atom.Kinds;
         var rootAndBranch = this.expression.disCompose();
@@ -86,6 +107,11 @@
         }
     };
 
+    /**
+     * 木の深さを設定する
+     * @method setDepth
+     * @param depth {number}    設定する深さ
+     */
     Tree.prototype.setDepth = function(depth){
         this.depth = depth;
         if (this.right !== null) {
@@ -96,6 +122,13 @@
         }
     };
 
+    /**
+     * 式木の値を計算する
+     * @static
+     * @method getValue
+     * @param tree {G.script.Tree}  値を計算したい木
+     * @returns {*}
+     */
     Tree.getValue = function(tree){
         if (tree === null) {
             return undefined;
@@ -104,7 +137,11 @@
         return val;
     };
 
-
+    /**
+     * Expression.disComposeによって取得されたオブジェクトがbfrを持っているかを調べる
+     * @param rootAndBranch Expression.disComposeによって取得されたオブジェクト
+     * @param bool  {boolean}   trueならbfrを持つか調べ、falseなら持っていないか調べる
+     */
     Tree.hasBfr = function(rootAndBranch, bool){
         if (bool) {
             if (rootAndBranch.bfr.children.length === 0) {
@@ -117,6 +154,11 @@
         }
     };
 
+    /**
+     * Expression.disComposeによって取得されたオブジェクトがaftを持っているかを調べる
+     * @param rootAndBranch Expression.disComposeによって取得されたオブジェクト
+     * @param bool  {boolean}   trueならaftを持つか調べ、falseなら持っていないか調べる
+     */
     Tree.hasAft = function(rootAndBranch, bool){
         if (bool) {
             if (rootAndBranch.aft.children.length === 0) {

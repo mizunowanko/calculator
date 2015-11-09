@@ -7,7 +7,8 @@
 (function(){
 
     /**
-     * @class Atom  式の最小単位（数値、演算子、関数等）を表すクラス
+     * 式の最小単位（数値、演算子、関数等）を表すクラス
+     * @class Atom
      * @constructor
      * @param obj {object} プロパティを格納したオブジェクト
      */

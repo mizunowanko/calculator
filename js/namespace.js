@@ -6,7 +6,6 @@
 var G = {
     script: {
         Complex: {},
-        Util: {},
         Tree: {},
         Operator: {},
         Atom : {},
