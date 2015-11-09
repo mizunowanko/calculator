@@ -6,11 +6,13 @@
 (function(){
 
 
-
-
-//+++++++++++++++++++++
-// 複素数を表すオブジェクト
-//+++++++++++++++++++++
+    /**
+     * 複素数を表すオブジェクト
+     * @class Complex
+     * @param re    {Number}    実部
+     * @param im    {Number}    虚部
+     * @constructor
+     */
 
 //複素数オブジェクトの定義
     G.script.Complex = function(re, im){
@@ -30,7 +32,11 @@
 //--------------------
 
 
-    //toString
+    /**
+     * 複素数を一般的な記法で表示する
+     * @method toString
+     * @returns {string} 複素数表示
+     */
     Cmp.prototype.toString = function(){
         return String(this.re.toFixed(2)) + " + " + String(this.im.toFixed(2)) + "i";
     };
@@ -41,34 +47,69 @@
 //--------------------
 
 
-//実数倍
+    /**
+     * 実数倍
+     * @static
+     * @method scl
+     * @param k {Number}実数
+     * @param a {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.scl = function(k, a){
         return new Cmp(a.re * k, a.im * k);
     };
 
-//絶対値
+    /**
+     * 絶対値関数
+     * @static
+     * @method abs
+     * @param a {G.script.Complex} 複素数
+     * @returns {number}
+     */
     Cmp.abs = function(a){
         return Math.sqrt(Cmp.abs2(a));
     };
 
-//絶対値の二乗
+    /**
+     * 絶対値の二乗
+     * @static
+     * @method abs2
+     * @param a {G.script.Complex} 複素数
+     * @returns {number}
+     */
     Cmp.abs2 = function(a){
         return Math.pow(a.re, 2) + Math.pow(a.im, 2);
     };
 
-//共役
+    /**
+     * 共役複素数
+     * @static
+     * @method conj
+     * @param a {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.conj = function(a){
         return new Cmp(a.re, -a.im);
     };
 
-//逆数
+    /**
+     * 逆数
+     * @static
+     * @method inv
+     * @param a {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.inv = function(a){
         var b = new Cmp(a.re, -a.im);
         return Cmp.scl(1 / Cmp.abs2(a), b);
 
     };
 
-    //恒等関数
+    /**
+     * 恒等関数
+     * @param a {G.script.Complex} 複素数
+     * @returns {G.script.Complex}
+     */
     Cmp.id = function(a){
         return a;
     };
@@ -79,22 +120,50 @@
 //    四則演算
 //--------------------------------
 
-//加法
+    /**
+     * 加法
+     * @static
+     * @method add
+     * @param a {G.script.Complex} 複素数
+     * @param b {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.add = function(a, b){
         return new Cmp(a.re + b.re, a.im + b.im);
     };
 
-//減法
+    /**
+     * 減法
+     * @static
+     * @method sub
+     * @param a {G.script.Complex} 複素数
+     * @param b {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.sub = function(a, b){
         return new Cmp(a.re - b.re, a.im - b.im);
     };
 
-//乗法
+    /**
+     * 乗法
+     * @static
+     * @method mlt
+     * @param a {G.script.Complex} 複素数
+     * @param b {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.mlt = function(a, b){
         return new Cmp(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re);
     };
 
-//除法
+    /**
+     * 除法
+     * @static
+     * @method div
+     * @param a {G.script.Complex} 複素数
+     * @param b {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.div = function(a, b){
         return Cmp.mlt(a, Cmp.inv(b));
     };
@@ -103,7 +172,13 @@
 //    極形式
 //---------------------
 
-//偏角
+    /**
+     * 偏角
+     * @static
+     * @method arg
+     * @param a {G.script.Complex}複素数
+     * @returns {number}
+     */
     Cmp.arg = function(a){
         var x = a.re;
         var y = a.im;
@@ -129,17 +204,35 @@
 //    指数関数、対数関数
 //--------------------------------
 
-//指数関数
+    /**
+     * 指数関数
+     * @static
+     * @method exp
+     * @param a {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.exp = function(a){
         return Cmp.scl(Math.exp(a.re), Cmp.expi(a.im));
     };
 
-//対数関数
+    /**
+     * 対数関数
+     * @static
+     * @method log
+     * @param a {G.script.Complex} 複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.log = function(a){
         return new Cmp(Math.log(Cmp.abs(a)), Cmp.arg(a));
     };
 
-//純虚数に対する指数関数
+    /**
+     * 純虚数に対する指数関数
+     * @static
+     * @method expi
+     * @param y {Number} 虚部
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.expi = function(y){
         return new Cmp(Math.cos(y), Math.sin(y));
     };
@@ -148,7 +241,13 @@
 //      三角関数
 //------------------------
 
-//sin
+    /**
+     * 正弦関数
+     * @static
+     * @method sin
+     * @param a {G.script.Complex}   複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.sin = function(a){
         var b = Cmp.scl(Math.sin(a.re), Cmp.cosi(a.im)),
             c = Cmp.scl(Math.cos(a.re), Cmp.sini(a.im));
@@ -156,30 +255,53 @@
 
     };
 
-//cos
+    /**
+     * 余弦関数
+     * @static
+     * @method cos
+     * @param a {G.script.Complex}   複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.cos = function(a){
         var b = Cmp.scl(Math.cos(a.re), Cmp.cosi(a.im)),
             c = Cmp.scl(Math.sin(a.re), Cmp.sini(a.im));
         return Cmp.add(b, c);
     };
 
-//tan
+    /**
+     * 正接関数
+     * @static
+     * @method tan
+     * @param a {G.script.Complex}   複素数
+     * @returns {G.script.Complex|{}}
+     */
     Cmp.tan = function(a){
         return Cmp.div(Cmp.sin(a), Cmp.cos(a));
     };
 
-// 純虚数に対するsin
-    Cmp.sini = function(x){
-        var a = Cmp.expi(x);
-        var b = Cmp.expi(-x);
+    /**
+     * 純虚数に対するsin
+     * @static
+     * @method sini
+     * @param y {Number}    虚部
+     * @returns {G.script.Complex|{}}
+     */
+    Cmp.sini = function(y){
+        var a = Cmp.expi(y);
+        var b = Cmp.expi(-y);
         var c = new Cmp(2, 0);
         return Cmp.div(Cmp.add(a, b), c);
     };
 
-// 純虚数に対するcos
-    Cmp.cosi = function(x){
-        var a = Cmp.expi(x);
-        var b = Cmp.expi(-x);
+    /** 純虚数に対するcos
+     * @static
+     * @method cosi
+     * @param y {Number}    虚部
+     * @returns {G.script.Complex|{}}
+     */
+    Cmp.cosi = function(y){
+        var a = Cmp.expi(y);
+        var b = Cmp.expi(-y);
         var c = new Cmp(0, 2);
         return Cmp.div(Cmp.sub(a, b), c);
     };
@@ -189,12 +311,56 @@
 //      双曲線関数
 //------------------------
 
+    /**
+     * 双曲線正弦関数
+     * @static
+     * @method sinh
+     * @param a {G.script.Complex}   複素数
+     * @returns {G.script.Complex}
+     */
+    Cmp.sinh = function(a){
+        var b = Cmp.exp(a);
+        var c = Cmp.exp(Cmp.scl(-1, a));
+        return Cmp.scl(2, Cmp.sub(b, c));
+    };
 
+
+    /**
+     * 双曲線余弦関数
+     * @static
+     * @method cosh
+     * @param a {G.script.Complex}   複素数
+     * @returns {G.script.Complex}
+     */
+    Cmp.cosh = function(a){
+        var b = Cmp.exp(a);
+        var c = Cmp.exp(Cmp.scl(-1, a));
+        return Cmp.scl(2, Cmp.sub(b, c));
+    };
+    /**
+     * 双曲線正接関数
+     * @static
+     * @method tanh
+     * @param a {G.script.Complex}   複素数
+     * @returns {G.script.Complex}
+     */
+    Cmp.tanh = function(a){
+        var b = Cmp.sinh(a);
+        var c = Cmp.cosh(a);
+        return Cmp.div(b, c);
+    };
 //------------------------
 //      べき乗
 //------------------------
 
-//べき乗
+    /**
+     * べき乗
+     * @static
+     * @method pow
+     * @param a {G.script.Complex}  複素数
+     * @param b {G.script.Complex}  複素数
+     * @returns {G.script.Complex}
+     */
     Cmp.pow = function(a, b){
         if (a.re === 0 && a.im === 0) {
             if (b.re === 0 && b.im === 0) {
@@ -213,6 +379,4 @@
             return Cmp.scl(c, Cmp.exp(w));
         }
     };
-
-
 }());
