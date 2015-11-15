@@ -18,11 +18,20 @@
 
     validation.validate = function(str){
         str = _.trim(str);
-
+        if (!validation.isMadeFromOnlyAtoms(str)) {
+            throw new Error("数値、演算子、関数ではない文字列が含まれています。");
+        }
     };
 
     validation.isMadeFromOnlyAtoms = function(str){
-
+        var atomStr = _.pluck(atom.Atoms, "regStr").join("|");
+        atomStr = "^(" + atomStr + ")+$";
+        var reg = new RegExp(atomStr);
+        if (str.match(reg)) {
+            return true;
+        } else {
+            return false;
+        }
     };
 
 }());
