@@ -3,14 +3,16 @@
  */
 
 (function(){
-    function test_madeFromatoms(){
+    function test_madeFromAtoms(){
         var val = G.script.Validation;
-        var str = "(1i)";
+        var str = "((1i))";
         var reg = new RegExp("^(\\-|\\*)+$");
         var suc = reg.test(str);
+        var result = val.checkParen(str);
         //document.write(suc);
-        document.write(val.validate(str));
+        //document.write(val.validate(str));
+        document.write(result);
     }
 
-    window.onload = test_madeFromatoms();
+    window.onload = test_madeFromAtoms();
 }());
