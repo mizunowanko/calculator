@@ -13,16 +13,16 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <model src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></model>
+    <model src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></model>
     <![endif]-->
     <script type="text/javascript" src="js/library/lodash.js"></script>
     <script type="text/javascript" src="js/namespace.js"></script>
-    <script type="text/javascript" src="js/script/complex.js"></script>
-    <script type="text/javascript" src="js/script/atom.js"></script>
-    <script type="text/javascript" src="js/script/expression.js"></script>
-    <script type="text/javascript" src="js/script/tree.js"></script>
-    <script type="text/javascript" src="js/script/validation.js"></script>
+    <script type="text/javascript" src="js/model/complex.js"></script>
+    <script type="text/javascript" src="js/model/atom.js"></script>
+    <script type="text/javascript" src="js/model/expression.js"></script>
+    <script type="text/javascript" src="js/model/tree.js"></script>
+    <script type="text/javascript" src="js/model/validation.js"></script>
     <script type="text/javascript" src="js/test/test_validation.js"></script>
 </head>
 <body>
@@ -40,127 +40,128 @@
                 <thead>
                 <tr>
                     <td colspan="5"><textarea rows="3" id="display"
-                                              class="form-control"></textarea></td>
+                                              class="form-control"></textarea>
+                    </td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>
-                        <button id="btn-sin" id="btn-" class="btn-primary btn-block">sin</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-cos" id="btn-" class="btn-primary btn-block">cos</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-tan" id="btn-" class="btn-primary btn-block">tan</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-exp" id="btn-" class="btn-primary btn-block">exp</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-log" id="btn-" class="btn-primary btn-block">log</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="btn-sinh" id="btn-" class="btn-primary btn-block">sinh</button>
-                    </td>
-                    <td>
-                        <button id="btn-cosh" id="btn-" class="btn-primary btn-block">cosh</button>
-                    </td>
-                    <td>
-                        <button id="btn-tanh" id="btn-" class="btn-primary btn-block">tanh</button>
-                    </td>
-                    <td>
-                        <button id="btn-pow" id="btn-" class="btn-primary btn-block">^</button>
-                    </td>
-                    <td>
-                        <button id="btn-abs" id="btn-" class="btn-primary btn-block">abs</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button id="btn-" id="btn-" class="btn-primary btn-block"></button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-" id="btn-" class="btn-primary btn-block"></button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-" id="btn-" class="btn-primary btn-block"></button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-leftParen" id="btn-" class="btn-primary btn-block">(</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-rightParen" id="btn-" class="btn-primary btn-block">)</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="btn-7" id="btn-" class="btn-primary btn-block">7</button>
-                    </td>
-                    <td>
-                        <button id="btn-8" id="btn-" class="btn-primary btn-block">8</button>
-                    </td>
-                    <td>
-                        <button id="btn-9" id="btn-" class="btn-primary btn-block">9</button>
-                    </td>
-                    <td>
-                        <button id="btn-del" id="btn-" class="btn-primary btn-block">DEL</button>
-                    </td>
-                    <td>
-                        <button id="btn-ac" id="btn-" class="btn-primary btn-block">AC</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button id="btn-4" id="btn-" class="btn-primary btn-block">4</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-5" id="btn-" class="btn-primary btn-block">5</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-6" id="btn-" class="btn-primary btn-block">6</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-mlt" id="btn-" class="btn-primary btn-block">×</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-div" id="btn-" class="btn-primary btn-block">÷</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="btn-1" id="btn-" class="btn-primary btn-block">1</button>
-                    </td>
-                    <td>
-                        <button id="btn-2" id="btn-" class="btn-primary btn-block">2</button>
-                    </td>
-                    <td>
-                        <button id="btn-3" id="btn-" class="btn-primary btn-block">3</button>
-                    </td>
-                    <td>
-                        <button id="btn-add" id="btn-" class="btn-primary btn-block">+</button>
-                    </td>
-                    <td>
-                        <button id="btn-sub" id="btn-" class="btn-primary btn-block">-</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button id="btn-0" id="btn-" class="btn-primary btn-block">0</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-dot" id="btn-" class="btn-primary btn-block">.</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-" id="btn-" class="btn-primary btn-block"></button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-ans" id="btn-" class="btn-primary btn-block">Ans</button>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                     <td>
-                        <button id="btn-equal" id="btn-" class="btn-primary btn-block">=</button>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
+                    </td>
+                    <td>
+                        <button class="key btn-primary btn-block"></button>
                     </td>
                 </tr>
                 </tbody>
