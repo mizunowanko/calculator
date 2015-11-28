@@ -48,7 +48,15 @@
         setKeyEvent.call($(".key").eq(31), ".", ".", "");
         setKeyEvent.call($(".key").eq(32), "i", "i", "");
         setKeyEvent.call($(".key").eq(33), "", "", "");
-        setSpecialKeyEvent.call($(".key").eq(34), "=", getValue);
+        setSpecialKeyEvent.call($(".key").eq(34), "=", displayValue);
+
+
+        $("#display").keydown(function(e){
+            if (e.which == 13) {
+                displayValue();
+                return false;
+            }
+        });
     };
 
     var setKeyEvent = function(keyStr, before, after, mode){
@@ -66,7 +74,7 @@
     };
 
 
-    var getValue = function(){
+    var displayValue = function(){
         var text = $("#display").val();
         var expr = Expr.createExpressionByStr(text);
         var tree = Tree.createTree(expr);

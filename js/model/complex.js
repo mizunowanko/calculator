@@ -38,7 +38,17 @@
      * @returns {string} 複素数表示
      */
     Cmp.prototype.toString = function(){
-        return String(this.re.toFixed(2)) + " + " + String(this.im.toFixed(2)) + "i";
+        var re = String(this.re.toFixed(2));
+        var im = String(this.im.toFixed(2));
+        if (im === "0.00") {
+            return re;
+        } else {
+            if (re === "0.00") {
+                return im + "i";
+            } else {
+                return re + " + " + im + "i";
+            }
+        }
     };
 
 
@@ -113,7 +123,6 @@
     Cmp.id = function(a){
         return a;
     };
-
 
 
 //--------------------------------

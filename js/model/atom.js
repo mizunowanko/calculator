@@ -127,7 +127,7 @@
             }
         }),
         im : new Atom({
-            regStr : "\\d*i",
+            regStr : "(\\d+(?:\\.\\d+)?)*i",
             priority : 10,
             kind : Kinds.num,
             behave : function(){
@@ -139,7 +139,7 @@
             }
         }),
         re : new Atom({
-            regStr : "\\d+",
+            regStr : "\\d+(?:\\.\\d+)?",
             priority : 10,
             kind : Kinds.num,
             behave : function(){
