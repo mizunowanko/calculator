@@ -16,6 +16,8 @@
     <model src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></model>
     <model src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></model>
     <![endif]-->
+    <script type="text/javascript" src="js/library/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/library/jquery.selection.js"></script>
     <script type="text/javascript" src="js/library/lodash.js"></script>
     <script type="text/javascript" src="js/namespace.js"></script>
     <script type="text/javascript" src="js/model/complex.js"></script>
@@ -23,11 +25,11 @@
     <script type="text/javascript" src="js/model/expression.js"></script>
     <script type="text/javascript" src="js/model/tree.js"></script>
     <script type="text/javascript" src="js/model/validation.js"></script>
-    <script type="text/javascript" src="js/test/test_validation.js"></script>
+    <script type="text/javascript" src="js/viewModel/event.js"></script>
 </head>
 <body>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins)
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
@@ -36,6 +38,7 @@
 <div class="container bg-info">
     <div class="row">
         <div class="col-sm-5">
+            <button id="btn">aaa</button>
             <table>
                 <thead>
                 <tr>
@@ -168,7 +171,6 @@
             </table>
         </div>
         <div class="col-sm-7">
-
         </div>
     </div>
 </div>

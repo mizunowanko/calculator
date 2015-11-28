@@ -13,6 +13,4 @@
         //document.write(val.validate(str));
         document.write(result);
     }
-
-    window.onload = test_madeFromAtoms();
 }());
