@@ -7,11 +7,11 @@
 
 (function(){
 
-    var Expr = G.script.Expression;
+    var Expr = G.model.Expression;
 
     var testExpression = function(){
 
-        var atoms = G.script.Atom.Atoms;
+        var atoms = G.model.Atom.Atoms;
 
         var a = "+";
         var r = atoms.add.headReg;

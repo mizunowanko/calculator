@@ -10,14 +10,14 @@
      * @param expression   Expressionオブジェクト
      * @constructor
      */
-    G.script.Tree = function(expression){
+    G.model.Tree = function(expression){
         this.expression = expression;
     };
 
 
-    var Tree = G.script.Tree;
-    var Atom = G.script.Atom;
-    var Expr = G.script.Expression;
+    var Tree = G.model.Tree;
+    var Atom = G.model.Atom;
+    var Expr = G.model.Expression;
 
     /**
      * 木構造を文字列で表現
@@ -42,7 +42,7 @@
      * @static
      * @method createTree
      * @param expression    Expressionオブジェクト
-     * @returns {G.script.Tree|{}}
+     * @returns {G.model.Tree|{}}
      */
     Tree.createTree = function(expression){
         var tree = new Tree(expression);
@@ -126,7 +126,7 @@
      * 式木の値を計算する
      * @static
      * @method getValue
-     * @param tree {G.script.Tree}  値を計算したい木
+     * @param tree {G.model.Tree}  値を計算したい木
      * @returns {*}
      */
     Tree.getValue = function(tree){

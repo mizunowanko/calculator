@@ -15,7 +15,7 @@
      */
 
 //複素数オブジェクトの定義
-    G.script.Complex = function(re, im){
+    G.model.Complex = function(re, im){
 
         //実数
         this.re = re;
@@ -25,7 +25,7 @@
     };
 
     //複素数オブジェクトを格納するローカル変数
-    var Cmp = G.script.Complex;
+    var Cmp = G.model.Complex;
 
 //--------------------
 //     オブジェクト関数
@@ -52,8 +52,8 @@
      * @static
      * @method scl
      * @param k {Number}実数
-     * @param a {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.scl = function(k, a){
         return new Cmp(a.re * k, a.im * k);
@@ -63,7 +63,7 @@
      * 絶対値関数
      * @static
      * @method abs
-     * @param a {G.script.Complex} 複素数
+     * @param a {G.model.Complex} 複素数
      * @returns {number}
      */
     Cmp.abs = function(a){
@@ -74,7 +74,7 @@
      * 絶対値の二乗
      * @static
      * @method abs2
-     * @param a {G.script.Complex} 複素数
+     * @param a {G.model.Complex} 複素数
      * @returns {number}
      */
     Cmp.abs2 = function(a){
@@ -85,8 +85,8 @@
      * 共役複素数
      * @static
      * @method conj
-     * @param a {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.conj = function(a){
         return new Cmp(a.re, -a.im);
@@ -96,8 +96,8 @@
      * 逆数
      * @static
      * @method inv
-     * @param a {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.inv = function(a){
         var b = new Cmp(a.re, -a.im);
@@ -107,8 +107,8 @@
 
     /**
      * 恒等関数
-     * @param a {G.script.Complex} 複素数
-     * @returns {G.script.Complex}
+     * @param a {G.model.Complex} 複素数
+     * @returns {G.model.Complex}
      */
     Cmp.id = function(a){
         return a;
@@ -124,9 +124,9 @@
      * 加法
      * @static
      * @method add
-     * @param a {G.script.Complex} 複素数
-     * @param b {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @param b {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.add = function(a, b){
         return new Cmp(a.re + b.re, a.im + b.im);
@@ -136,9 +136,9 @@
      * 減法
      * @static
      * @method sub
-     * @param a {G.script.Complex} 複素数
-     * @param b {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @param b {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.sub = function(a, b){
         return new Cmp(a.re - b.re, a.im - b.im);
@@ -148,9 +148,9 @@
      * 乗法
      * @static
      * @method mlt
-     * @param a {G.script.Complex} 複素数
-     * @param b {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @param b {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.mlt = function(a, b){
         return new Cmp(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re);
@@ -160,9 +160,9 @@
      * 除法
      * @static
      * @method div
-     * @param a {G.script.Complex} 複素数
-     * @param b {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @param b {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.div = function(a, b){
         return Cmp.mlt(a, Cmp.inv(b));
@@ -176,7 +176,7 @@
      * 偏角
      * @static
      * @method arg
-     * @param a {G.script.Complex}複素数
+     * @param a {G.model.Complex}複素数
      * @returns {number}
      */
     Cmp.arg = function(a){
@@ -208,8 +208,8 @@
      * 指数関数
      * @static
      * @method exp
-     * @param a {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.exp = function(a){
         return Cmp.scl(Math.exp(a.re), Cmp.expi(a.im));
@@ -219,8 +219,8 @@
      * 対数関数
      * @static
      * @method log
-     * @param a {G.script.Complex} 複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex} 複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.log = function(a){
         return new Cmp(Math.log(Cmp.abs(a)), Cmp.arg(a));
@@ -231,7 +231,7 @@
      * @static
      * @method expi
      * @param y {Number} 虚部
-     * @returns {G.script.Complex|{}}
+     * @returns {G.model.Complex|{}}
      */
     Cmp.expi = function(y){
         return new Cmp(Math.cos(y), Math.sin(y));
@@ -245,8 +245,8 @@
      * 正弦関数
      * @static
      * @method sin
-     * @param a {G.script.Complex}   複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex}   複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.sin = function(a){
         var b = Cmp.scl(Math.sin(a.re), Cmp.cosi(a.im)),
@@ -259,8 +259,8 @@
      * 余弦関数
      * @static
      * @method cos
-     * @param a {G.script.Complex}   複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex}   複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.cos = function(a){
         var b = Cmp.scl(Math.cos(a.re), Cmp.cosi(a.im)),
@@ -272,8 +272,8 @@
      * 正接関数
      * @static
      * @method tan
-     * @param a {G.script.Complex}   複素数
-     * @returns {G.script.Complex|{}}
+     * @param a {G.model.Complex}   複素数
+     * @returns {G.model.Complex|{}}
      */
     Cmp.tan = function(a){
         return Cmp.div(Cmp.sin(a), Cmp.cos(a));
@@ -284,7 +284,7 @@
      * @static
      * @method sini
      * @param y {Number}    虚部
-     * @returns {G.script.Complex|{}}
+     * @returns {G.model.Complex|{}}
      */
     Cmp.sini = function(y){
         var a = Cmp.expi(y);
@@ -297,7 +297,7 @@
      * @static
      * @method cosi
      * @param y {Number}    虚部
-     * @returns {G.script.Complex|{}}
+     * @returns {G.model.Complex|{}}
      */
     Cmp.cosi = function(y){
         var a = Cmp.expi(y);
@@ -315,8 +315,8 @@
      * 双曲線正弦関数
      * @static
      * @method sinh
-     * @param a {G.script.Complex}   複素数
-     * @returns {G.script.Complex}
+     * @param a {G.model.Complex}   複素数
+     * @returns {G.model.Complex}
      */
     Cmp.sinh = function(a){
         var b = Cmp.exp(a);
@@ -329,8 +329,8 @@
      * 双曲線余弦関数
      * @static
      * @method cosh
-     * @param a {G.script.Complex}   複素数
-     * @returns {G.script.Complex}
+     * @param a {G.model.Complex}   複素数
+     * @returns {G.model.Complex}
      */
     Cmp.cosh = function(a){
         var b = Cmp.exp(a);
@@ -341,8 +341,8 @@
      * 双曲線正接関数
      * @static
      * @method tanh
-     * @param a {G.script.Complex}   複素数
-     * @returns {G.script.Complex}
+     * @param a {G.model.Complex}   複素数
+     * @returns {G.model.Complex}
      */
     Cmp.tanh = function(a){
         var b = Cmp.sinh(a);
@@ -357,9 +357,9 @@
      * べき乗
      * @static
      * @method pow
-     * @param a {G.script.Complex}  複素数
-     * @param b {G.script.Complex}  複素数
-     * @returns {G.script.Complex}
+     * @param a {G.model.Complex}  複素数
+     * @param b {G.model.Complex}  複素数
+     * @returns {G.model.Complex}
      */
     Cmp.pow = function(a, b){
         if (a.re === 0 && a.im === 0) {

@@ -12,7 +12,7 @@
      * @constructor
      * @param obj {object} プロパティを格納したオブジェクト
      */
-    G.script.Atom = function(obj){
+    G.model.Atom = function(obj){
         this.str = obj.str;
         this.regStr = obj.regStr;
         this.priority = obj.priority;
@@ -20,8 +20,8 @@
         this.kind = obj.kind;
     };
 
-    var Atom = G.script.Atom;
-    var Complex = G.script.Complex;
+    var Atom = G.model.Atom;
+    var Complex = G.model.Complex;
 
 
     /**

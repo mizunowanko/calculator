@@ -7,10 +7,10 @@
 
 (function(){
 
-    var Util = G.script.Util;
+    var Util = G.model.Util;
 
     G.test.TestUtil.testGetPropertyArr = function(){
-        var a = G.script.Operator.Operators;
+        var a = G.model.Operator.Operators;
         var b = Util.getPropertyArr(a, "name");
         console.log(b);
     };

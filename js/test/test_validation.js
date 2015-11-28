@@ -4,7 +4,7 @@
 
 (function(){
     function test_madeFromAtoms(){
-        var val = G.script.Validation;
+        var val = G.model.Validation;
         var str = "((1i))";
         var reg = new RegExp("^(\\-|\\*)+$");
         var suc = reg.test(str);

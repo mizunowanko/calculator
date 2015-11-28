@@ -4,7 +4,7 @@
 
 
 (function(){
-    var Atom = G.script.Atom;
+    var Atom = G.model.Atom;
     var a = Atom.createAtom("+");
     var b = Atom.createAtom("2");
 }());

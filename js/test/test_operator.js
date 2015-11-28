@@ -10,7 +10,7 @@ G.test.TestOperator = function(){};
 
 
 G.test.TestOperator.testFilterByPriority = function(){
-    var a = G.script.Operator.filterByPriority(2);
+    var a = G.model.Operator.filterByPriority(2);
     console.log(a);
 };
 

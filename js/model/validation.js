@@ -9,12 +9,12 @@
      * @class Validation
      * @constructor
      */
-    G.script.Validation = function(){
+    G.model.Validation = function(){
 
     };
 
-    var validation = G.script.Validation;
-    var atom = G.script.Atom;
+    var validation = G.model.Validation;
+    var atom = G.model.Atom;
 
     validation.validate = function(str){
         str = _.trim(str);

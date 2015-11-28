@@ -11,14 +11,14 @@
     };
 
     G.test.TestTree.testInstance = function(){
-        var tree = new G.script.Tree("ルート", null, null);
+        var tree = new G.model.Tree("ルート", null, null);
         console.log(tree.toString());
     };
 
-    var Complex = G.script.Complex;
-    var Atom = G.script.Atom;
-    var Expr = G.script.Expression;
-    var Tree = G.script.Tree;
+    var Complex = G.model.Complex;
+    var Atom = G.model.Atom;
+    var Expr = G.model.Expression;
+    var Tree = G.model.Tree;
 
     var testExpand = function(){
 

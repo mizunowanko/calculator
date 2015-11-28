@@ -11,19 +11,19 @@
      * @constructor
      */
 
-    G.script.Expression = function(children){
+    G.model.Expression = function(children){
         this.children = children;
     };
 
-    var Expr = G.script.Expression;
-    var Atom = G.script.Atom;
+    var Expr = G.model.Expression;
+    var Atom = G.model.Atom;
 
     /**
      * 文字列からExpressionを生成する
      * @static
      * @method createExpressionByStr
      * @param str {String}  式の文字列
-     * @return {G.script.Expression}    Expressionオブジェクト
+     * @return {G.model.Expression}    Expressionオブジェクト
      */
     Expr.createExpressionByStr = function(str){
         var children = [];
@@ -61,7 +61,7 @@
      * @static
      * @method createExpressionByChildren
      * @param children  新しいExpressionオブジェクトに含まれるchildren
-     * @returns {G.script.Expression|{}}    新しいExpressionオブジェクト
+     * @returns {G.model.Expression|{}}    新しいExpressionオブジェクト
      */
     Expr.createExpressionByChildren = function(children){
         if (children.length === 1 && children[0] instanceof Expr) {
@@ -106,7 +106,7 @@
     /**
      * 木構造にできるように式を３つの部分に分解する。分割は最も優先順位の低い結合を基準に行う
      * @method disCompose
-     * @returns {{mid: (G.script.Expression|{}), bfr: (G.script.Expression|{}), aft: (G.script.Expression|{})}} midを中心に、Expressionをleft,mid,rightの３つに分割し、それぞれを内包したオブジェクトを返す
+     * @returns {{mid: (G.model.Expression|{}), bfr: (G.model.Expression|{}), aft: (G.model.Expression|{})}} midを中心に、Expressionをleft,mid,rightの３つに分割し、それぞれを内包したオブジェクトを返す
      */
     Expr.prototype.disCompose = function(){
         var min = _.min(this.children, "priority");
