@@ -40,6 +40,9 @@
     Cmp.prototype.toString = function(){
         var re = String(this.re.toFixed(2));
         var im = String(this.im.toFixed(2));
+
+        //実数部または虚数部が0の場合は虚数部を省略
+        //ただし、両方0の時は実数部を表示する
         if (im === "0.00") {
             return re;
         } else {
@@ -112,7 +115,6 @@
     Cmp.inv = function(a){
         var b = new Cmp(a.re, -a.im);
         return Cmp.scl(1 / Cmp.abs2(a), b);
-
     };
 
     /**
@@ -189,8 +191,11 @@
      * @returns {number}
      */
     Cmp.arg = function(a){
+
         var x = a.re;
         var y = a.im;
+
+        //実部が0だと除算ができないので場合分けする
         if (x === 0) {
             if (y > 0) {
                 return Math.PI / 2;
@@ -371,6 +376,8 @@
      * @returns {G.model.Complex}
      */
     Cmp.pow = function(a, b){
+
+        //実部も虚部も0だと値が不定になるので、undefinedを返す
         if (a.re === 0 && a.im === 0) {
             if (b.re === 0 && b.im === 0) {
                 return undefined;

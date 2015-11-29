@@ -46,7 +46,7 @@
 
 
     /**
-     * 全ての種類のAtomを格納したオブジェクト。各Atomの性質はこのオブジェクトから取得する
+     * 全ての種類のAtomを格納したオブジェクト。各Atomの性質はこのオブジェクトから取得する。<br/>str : 文字列としての表現 <br/>regStr : 正規表現 <br/>priority : 演算の優先順位。数値が高いほど順位も高い <br/>kind : 種類 <br/>behave : 関数としての振る舞い
      * @static
      * @property Atoms
      * @type {{Atom}}
