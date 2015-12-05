@@ -94,6 +94,13 @@
             kind : Kinds.func,
             behave : Complex.id
         }),
+        abs : new Atom({
+            str : "abs",
+            regStr : "abs",
+            priority : 8,
+            kind : Kinds.func,
+            behave : Complex.id
+        }),
         exp : new Atom({
             str : "exp",
             regStr : "exp",
@@ -107,6 +114,48 @@
             priority : 8,
             kind : Kinds.func,
             behave : Complex.log
+        }),
+        sin : new Atom({
+            str : "sin",
+            regStr : "sin(?!h)",
+            priority : 8,
+            kind : Kinds.func,
+            behave : Complex.sin
+        }),
+        cos : new Atom({
+            str : "cos",
+            regStr : "cos(?!h)",
+            priority : 8,
+            kind : Kinds.func,
+            behave : Complex.cos
+        }),
+        tan : new Atom({
+            str : "tan",
+            regStr : "tan(?!h)",
+            priority : 8,
+            kind : Kinds.func,
+            behave : Complex.tan
+        }),
+        sinh : new Atom({
+            str : "sinh",
+            regStr : "sinh",
+            priority : 8,
+            kind : Kinds.func,
+            behave : Complex.sinh
+        }),
+        cosh : new Atom({
+            str : "cosh",
+            regStr : "cosh",
+            priority : 8,
+            kind : Kinds.func,
+            behave : Complex.cosh
+        }),
+        tanh : new Atom({
+            str : "tanh",
+            regStr : "tanh",
+            priority : 8,
+            kind : Kinds.func,
+            behave : Complex.tanh
         }),
         pi : new Atom({
             str : "pi",
